@@ -16,3 +16,12 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ]);
+
+mix.webpackConfig({
+    devServer: {
+        host: '0.0.0.0',
+        port: 8080,
+    }
+})
+
+mix.bladeReload();
