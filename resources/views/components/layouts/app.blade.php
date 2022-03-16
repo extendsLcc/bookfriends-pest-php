@@ -16,10 +16,20 @@
     <div class="col-span-2 border-r border-slate-200 space-y-6">
         <ul>
             <li>
-                <span class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Extends</span>
+                <span class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Feed</span>
             </li>
             <li>
-                <a href="" class="fon font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Feed</a>
+                <span class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">ExtendsLcc</span>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">My Books</span>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">Logout</span>
             </li>
         </ul>
     </div>

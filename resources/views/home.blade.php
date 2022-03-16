@@ -4,7 +4,7 @@
         head
     </x-slot>
 
-    <div class="mt-9">
+    <div class="mt-8">
         content
     </div>
 
