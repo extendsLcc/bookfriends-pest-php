@@ -1,8 +1,14 @@
 <?php declare(strict_types=1);
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
+
+
+it('redirects authenticated user', function () {
+    expect(User::factory()->create())->toBeRedirectedFor('/auth/register');
+});
 
 it('shows register page')->get('/auth/register')->assertOk();
 

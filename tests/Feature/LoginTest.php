@@ -3,18 +3,12 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
 uses(RefreshDatabase::class);
 
 it('redirects authenticated user', function () {
-    $user = User::factory()->create();
-
-    actingAs($user)
-        ->get('/auth/login')
-        ->assertRedirect();
+    expect(User::factory()->create())->toBeRedirectedFor('/auth/login');
 });
 
 

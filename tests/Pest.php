@@ -11,6 +11,8 @@
 |
 */
 
+use function Pest\Laravel\actingAs;
+
 uses(Tests\TestCase::class)->in('Feature');
 
 /*
@@ -24,8 +26,8 @@ uses(Tests\TestCase::class)->in('Feature');
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
+expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'get') {
+    return actingAs($this->value)->{$method}($url)->assertRedirect('/');
 });
 
 /*
