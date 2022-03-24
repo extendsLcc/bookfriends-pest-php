@@ -11,6 +11,7 @@ it('redirects authenticated user', function () {
     expect(User::factory()->create())->toBeRedirectedFor('/auth/login');
 });
 
+it('shows login page')->get('/auth/login')->assertOk();
 
 it('shows an errors if credentials are not provided')
     ->post('/login')
