@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use function Pest\Laravel\post;
 
 uses(RefreshDatabase::class);
 
