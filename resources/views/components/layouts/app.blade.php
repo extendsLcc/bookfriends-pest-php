@@ -32,7 +32,10 @@
                         <a href="" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">My Books</a>
                     </li>
                     <li>
-                        <a href="/books/create" class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1">
+                        <a
+                            href="/books/create"
+                            class="font-bold text-lg text-slate-600 hover:text-slate-800 block py-1"
+                        >
                             Add a book
                         </a>
                     </li>
@@ -80,7 +83,9 @@
                 </h1>
             @endisset
 
-            {{ $slot }}
+            <div class="mt-8">
+                {{ $slot }}
+            </div>
 
         </div>
     </div>

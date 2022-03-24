@@ -17,7 +17,8 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(5),
+            'author' => $this->faker->name(5),
         ];
     }
 }
