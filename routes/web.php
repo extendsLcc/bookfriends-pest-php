@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
 
-Route::get('/auth/register', RegisterIndexController::class);
+Route::post('/auth/register', RegisterIndexController::class);
