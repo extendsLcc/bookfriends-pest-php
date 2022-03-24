@@ -12,30 +12,16 @@ beforeEach(function () {
 });
 
 
-it('shows books that user wants to read', function () {
+it('shows books that user with correct status', function ($status, $heading) {
     $this->user->books()->attach($book = Book::factory()->create(), [
-        'status' => 'WANT_TO_READ',
+        'status' => $status,
     ]);
     actingAs($this->user)
         ->get('/')
-        ->assertSeeInOrder(['Want to read', $book->title]);
-});
-
-it('shows books that user is reading', function () {
-    $this->user->books()->attach($book = Book::factory()->create(), [
-        'status' => 'READING',
+        ->assertSeeInOrder([$heading, $book->title]);
+})
+    ->with([
+        ['status' => 'WANT_TO_READ', 'heading' => 'Want to read'],
+        ['status' => 'READING', 'heading' => 'Reading'],
+        ['status' => 'READ', 'heading' => 'Read'],
     ]);
-    actingAs($this->user)
-        ->get('/')
-        ->assertSeeInOrder(['Reading', $book->title]);
-});
-
-
-it('shows books that user has read', function () {
-    $this->user->books()->attach($book = Book::factory()->create(), [
-        'status' => 'READ',
-    ]);
-    actingAs($this->user)
-        ->get('/')
-        ->assertSeeInOrder(['Read', $book->title]);
-});
