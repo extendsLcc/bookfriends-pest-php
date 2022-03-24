@@ -5,9 +5,11 @@ use function Pest\Laravel\post;
 
 uses(RefreshDatabase::class);
 
-it('shows errors if details are not provided', function () {
-    post('/register')->assertSessionHasErrors(['name', 'email', 'password']);
-});
+it('shows register page')->get('/auth/register')->assertOk();
+
+it('shows errors if details are not provided')
+    ->post('/register')
+    ->assertSessionHasErrors(['name', 'email', 'password']);
 
 it('register the user', function () {
     post('/register', [
@@ -17,8 +19,8 @@ it('register the user', function () {
     ])->assertRedirect('/');
 
     $this->assertDatabaseHas('users', [
-            'name' => 'Extends',
-            'email' => 'extends@mail.com'
-        ])
+        'name' => 'Extends',
+        'email' => 'extends@mail.com'
+    ])
         ->assertAuthenticated();
 });
