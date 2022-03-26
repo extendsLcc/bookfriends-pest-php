@@ -51,4 +51,37 @@ class User extends Authenticatable
             ->withPivot('status')
             ->withTimestamps();
     }
+
+    public function friendsOfMine(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+            ->withPivot('accepted')
+            ->withTimestamps();
+    }
+
+    public function pendingFriendsOfMine(): BelongsToMany
+    {
+        return $this->friendsOfMine()
+            ->wherePivot('accepted', false);
+    }
+
+    public function friendsOf(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
+            ->withPivot('accepted')
+            ->withTimestamps();
+    }
+
+    public function pendingFriendsOf(): BelongsToMany
+    {
+        return $this->friendsOf()
+            ->wherePivot('accepted', false);
+    }
+
+    public function addFriend(User $friend)
+    {
+        $this->pendingFriendsOfMine()->syncWithoutDetaching($friend, [
+            'accepted' => true,
+        ]);
+    }
 }

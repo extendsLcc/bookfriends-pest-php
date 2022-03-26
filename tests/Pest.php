@@ -14,7 +14,7 @@
 use Pest\Expectation;
 use function Pest\Laravel\actingAs;
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(Tests\TestCase::class)->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
