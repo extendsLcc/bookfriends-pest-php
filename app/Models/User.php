@@ -65,6 +65,12 @@ class User extends Authenticatable
             ->wherePivot('accepted', false);
     }
 
+    public function acceptedFriendsOfMine(): BelongsToMany
+    {
+        return $this->friendsOfMine()
+            ->wherePivot('accepted', true);
+    }
+
     public function friendsOf(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
@@ -81,6 +87,13 @@ class User extends Authenticatable
     public function addFriend(User $friend)
     {
         $this->pendingFriendsOfMine()->syncWithoutDetaching($friend, [
+            'accepted' => false,
+        ]);
+    }
+
+    public function acceptFriend(User $friend)
+    {
+        $friend->friendsOfMine()->updateExistingPivot($this->id, [
             'accepted' => true,
         ]);
     }
