@@ -4,7 +4,7 @@
         Edit Book
     </x-slot>
 
-    <form action="" method="POST" class="mt-4 space-y-4">
+    <form action="/books/{{ $book->id }}" method="POST" class="mt-4 space-y-4">
         @method('PUT')
         @csrf
 

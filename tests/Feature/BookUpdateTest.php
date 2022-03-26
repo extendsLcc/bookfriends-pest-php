@@ -40,11 +40,7 @@ it('fails if the user does not own the book', function () {
     ]);
 
     actingAs($anotherUser)
-        ->put("/books/$book->id", [
-            'title' => 'new title',
-            'author' => 'new author',
-            'status' => 'WANT_TO_READ',
-        ])
+        ->put("/books/$book->id")
         ->assertStatus(Response::HTTP_FORBIDDEN);
 });
 

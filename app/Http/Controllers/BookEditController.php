@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class BookEditController extends Controller
 {
-    public function __invoke(int $bookId, Request $request)
+    /**
+     * @param Book $book
+     * @param Request $request
+     * @return View
+     * @throws AuthorizationException
+     */
+    public function __invoke(Book $book, Request $request): View
     {
-        if (!$book = $request->user()->books->find($bookId)){
-            abort(Response::HTTP_FORBIDDEN);
-        }
+        $this->authorize('update', $book);
+        $book = $request->user()->books->find($book->id);
         return view('books.edit', [
             'book' => $book,
         ]);

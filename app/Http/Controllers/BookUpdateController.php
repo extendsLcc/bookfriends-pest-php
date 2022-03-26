@@ -12,6 +12,7 @@ class BookUpdateController extends Controller
 {
     public function __invoke(Book $book, Request $request)
     {
+        $this->authorize('update', $book);
         $this->validate($request, [
             'title' => 'required',
             'author' => 'required',
@@ -20,9 +21,6 @@ class BookUpdateController extends Controller
                 Rule::in(array_keys(BookUser::$statuses))
             ],
         ]);
-        if (!$book = $request->user()->books->find($book->id)) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
         $book->update($request->only('title', 'author'));
         $request->user()->books()->updateExistingPivot($book, [
             'status' => $request->status,
