@@ -10,7 +10,7 @@
 
     @if(isset($links))
         <div>
-            {{ $links }}
+            <a href="/books/{{ $book->id }}/edit" class="text-blue-500 text-sm">Edit</a>
         </div>
     @endif
 </article>
