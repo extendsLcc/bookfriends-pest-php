@@ -107,4 +107,9 @@ class User extends Authenticatable
             'accepted' => true,
         ]);
     }
+
+    public function removeFriend(User $friend)
+    {
+        $this->friendsOfMine()->detach($friend);
+    }
 }
