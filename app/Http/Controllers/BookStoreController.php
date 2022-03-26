@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
 use App\Models\Pivot\BookUser;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class BookStoreController extends Controller
@@ -14,7 +14,7 @@ class BookStoreController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(BookStoreRequest $request)
     {
         $this->validate($request, [
             'title' => 'required',
