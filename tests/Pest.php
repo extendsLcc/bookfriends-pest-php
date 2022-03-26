@@ -11,6 +11,7 @@
 |
 */
 
+use Pest\Expectation;
 use function Pest\Laravel\actingAs;
 
 uses(Tests\TestCase::class)->in('Feature');
@@ -27,7 +28,13 @@ uses(Tests\TestCase::class)->in('Feature');
 */
 
 expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'get') {
-    return actingAs($this->value)->{$method}($url)->assertRedirect('/');
+    $response = null;
+    if (!$this->value) {
+        $response = test()->{$method}($url);
+    } else {
+        $response = actingAs($this->value)->{$method}($url);
+    }
+    return $response->assertStatus(302);
 });
 
 /*
@@ -41,7 +48,7 @@ expect()->extend('toBeRedirectedFor', function (string $url, string $method = 'g
 |
 */
 
-function something()
+function expectGuest(): Expectation
 {
-    // ..
+    return test()->expect(null);
 }
