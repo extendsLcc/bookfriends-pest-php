@@ -8,8 +8,8 @@ uses(RefreshDatabase::class);
 
 
 it('only allow authenticated users')
-    ->get('/books/create')
-    ->assertStatus(302);
+    ->expectGuest()
+    ->toBeRedirectedFor('/books/create');
 
 
 it('shows the available status on the form', function () {
