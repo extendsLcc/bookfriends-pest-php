@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Pivot\BookUser;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,6 +51,11 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function getFriendsAttribute()
+    {
+        return $this->acceptedFriendsOfMine->merge($this->acceptedFriendsOf);
+    }
+
     public function friendsOfMine(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
@@ -82,6 +86,12 @@ class User extends Authenticatable
     {
         return $this->friendsOf()
             ->wherePivot('accepted', false);
+    }
+
+    public function acceptedFriendsOf(): BelongsToMany
+    {
+        return $this->friendsOf()
+            ->wherePivot('accepted', true);
     }
 
     public function addFriend(User $friend)
