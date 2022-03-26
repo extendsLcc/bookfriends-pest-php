@@ -1,20 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Pivot\BookUser;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
-class BookStoreController extends Controller
+class BookUpdateController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-
-    public function __invoke(Request $request)
+    public function __invoke(Book $book, Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
@@ -24,10 +20,11 @@ class BookStoreController extends Controller
                 Rule::in(array_keys(BookUser::$statuses))
             ],
         ]);
-
-        $book = Book::create($request->only('title', 'author'));
-
-        $request->user()->books()->attach($book, [
+        if (!$book = $request->user()->books->find($book->id)) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
+        $book->update($request->only('title', 'author'));
+        $request->user()->books()->updateExistingPivot($book, [
             'status' => $request->status,
         ]);
 

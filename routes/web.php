@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookCreateController;
 use App\Http\Controllers\BookEditController;
 use App\Http\Controllers\BookStoreController;
+use App\Http\Controllers\BookUpdateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterIndexController;
@@ -28,5 +29,6 @@ Route::get('/auth/login', LoginController::class);
 Route::middleware('auth')->group(function () {
     Route::post('/books', BookStoreController::class);
     Route::get('/books/create', BookCreateController::class);
-    Route::get('/books/{bookId}/edit', BookEditController::class);
+    Route::get('/books/{book}/edit', BookEditController::class);
+    Route::put('/books/{book}', BookUpdateController::class);
 });
