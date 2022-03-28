@@ -5,6 +5,32 @@
     </x-slot>
 
     <main class="space-y-6">
+
+        <article>
+            <header>
+                <h1 class="font-bold text-xl text-slate-600">
+                    Friends
+                </h1>
+            </header>
+            <section>
+                <form action="/friends" method="POST" class="mt-4 space-y-4">
+                    @csrf
+                    <div class="space-y-1">
+                        <label for="email" class="block">Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="i.e you@mail.com" class="rounded block w-full">
+
+                        @error('email')
+                            <div class="text-sm text-red-500 mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="bg-slate-200 px-3 py-2 rounded">
+                        Send request
+                    </button>
+                </form>
+            </section>
+        </article>
+
         @if($friends->count())
             <artice>
                 <header>

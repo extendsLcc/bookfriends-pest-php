@@ -5,6 +5,7 @@ use App\Http\Controllers\BookEditController;
 use App\Http\Controllers\BookStoreController;
 use App\Http\Controllers\BookUpdateController;
 use App\Http\Controllers\FriendIndexController;
+use App\Http\Controllers\FriendStoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterIndexController;
@@ -34,4 +35,5 @@ Route::middleware('auth')->group(function () {
     Route::put('/books/{book}', BookUpdateController::class);
 
     Route::get('/friends', FriendIndexController::class);
+    Route::post('/friends', FriendStoreController::class);
 });
