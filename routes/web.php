@@ -4,6 +4,7 @@ use App\Http\Controllers\BookCreateController;
 use App\Http\Controllers\BookEditController;
 use App\Http\Controllers\BookStoreController;
 use App\Http\Controllers\BookUpdateController;
+use App\Http\Controllers\FriendDestroyController;
 use App\Http\Controllers\FriendIndexController;
 use App\Http\Controllers\FriendPatchController;
 use App\Http\Controllers\FriendStoreController;
@@ -38,4 +39,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/friends', FriendIndexController::class);
     Route::post('/friends', FriendStoreController::class);
     Route::patch('/friends/{friend}', FriendPatchController::class);
+    Route::delete('/friends/{friend}', FriendDestroyController::class);
 });

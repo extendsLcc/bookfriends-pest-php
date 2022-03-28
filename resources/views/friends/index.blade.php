@@ -42,6 +42,12 @@
                     @foreach( $friends as $friend)
                         <div>
                             {{ $friend->name }} ({{ $friend->email }})
+
+                            <form action="/friends/{{ $friend->id }}" method="post" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="text-blue-500">Remove</button>
+                            </form>
                         </div>
                     @endforeach
                 </section>
