@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Staudenmeir\LaravelMergedRelations\Eloquent\HasMergedRelationships;
 use Staudenmeir\LaravelMergedRelations\Eloquent\Relations\MergedRelation;
 
@@ -15,6 +17,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasMergedRelationships;
+    use HasRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -115,5 +118,12 @@ class User extends Authenticatable
     {
         $this->friendsOfMine()->detach($friend);
         $this->friendsOf()->detach($friend);
+    }
+
+    public function booksOfFriends(): HasManyDeep
+    {
+        return $this->hasManyDeepFromRelations($this->friends(), (new User)->books())
+            ->withIntermediate(BookUser::class)
+            ->orderBy('__book_user__updated_at', 'desc');
     }
 }

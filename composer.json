@@ -11,6 +11,7 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "staudenmeir/eloquent-has-many-deep": "^1.15",
         "staudenmeir/laravel-merged-relations": "^1.5"
     },
     "require-dev": {
