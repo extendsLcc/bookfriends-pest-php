@@ -57,7 +57,7 @@
                 <section class="mt-4 space-y-3">
                     @foreach( $pendingFriends as $pendingFriend)
                         <div>
-                            {{ $pendingFriend->name }} ({{ $pendingFriends->email }})
+                            {{ $pendingFriend->name }} ({{ $pendingFriend->email }})
                         </div>
                     @endforeach
                 </section>
