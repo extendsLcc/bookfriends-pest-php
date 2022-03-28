@@ -35,7 +35,7 @@ it('shows books of friends', function () {
         ->get('/feed')
         ->assertSeeInOrder([
             "$friendTwo->name wants to read $bookTwo->title",
-            "$friendOne->name wants to read $bookOne->title",
+            "$friendOne->name is reading $bookOne->title",
         ]);
 
 });
