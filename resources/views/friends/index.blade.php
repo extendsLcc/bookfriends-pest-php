@@ -64,6 +64,12 @@
                     @foreach( $pendingFriends as $pendingFriend)
                         <div>
                             {{ $pendingFriend->name }} ({{ $pendingFriend->email }})
+
+                            <form action="/friends/{{ $pendingFriend->id }}" method="post" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="text-blue-500">Cancel</button>
+                            </form>
                         </div>
                     @endforeach
                 </section>
