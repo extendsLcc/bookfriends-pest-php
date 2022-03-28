@@ -11,4 +11,13 @@ class BookUser extends Pivot
         'READING' => 'Reading',
         'READ' => 'Read',
     ];
+
+    public function getActionAttribute(): string
+    {
+        return match ($this->status) {
+            'WANT_TO_READ' => 'wants to read',
+            'READING' => 'is reading',
+            'READ' => 'has read',
+        };
+    }
 }
