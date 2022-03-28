@@ -6,7 +6,7 @@
 
     <main class="space-y-6">
 
-        <article>
+        <article class="block">
             <header>
                 <h1 class="font-bold text-xl text-slate-600">
                     Friends
@@ -32,7 +32,7 @@
         </article>
 
         @if($friends->count())
-            <artice>
+            <artice class="block">
                 <header>
                     <h1 class="font-bold text-xl text-slate-600">
                         Friends
@@ -41,14 +41,14 @@
                 <section class="mt-4 space-y-3">
                     @foreach( $friends as $friend)
                         <div>
-                            {{ $friend->name }}
+                            {{ $friend->name }} ({{ $friend->email }})
                         </div>
                     @endforeach
                 </section>
             </artice>
         @endif
         @if($pendingFriends->count())
-            <article>
+            <article class="block">
                 <header>
                     <h1 class="font-bold text-xl text-slate-600">
                         Pending friend requests
@@ -57,14 +57,14 @@
                 <section class="mt-4 space-y-3">
                     @foreach( $pendingFriends as $pendingFriend)
                         <div>
-                            {{ $pendingFriend->name }}
+                            {{ $pendingFriend->name }} ({{ $pendingFriends->email }})
                         </div>
                     @endforeach
                 </section>
             </article>
         @endif
         @if($requestingFriends->count())
-            <article>
+            <article class="block">
                 <header>
                     <h1 class="font-bold text-xl text-slate-600">
                         Friend requests
@@ -73,7 +73,12 @@
                 <section class="mt-4 space-y-3">
                     @foreach( $requestingFriends as $requestingFriend)
                         <div>
-                            {{ $requestingFriend->name }}
+                            {{ $requestingFriend->name }} ({{ $requestingFriend->email }})
+                            <form action="/friends/{{ $requestingFriend->id }}" method="post" class="inline">
+                                @csrf
+                                @method('PATCH')
+                                <button class="text-blue-500">Accept</button>
+                            </form>
                         </div>
                     @endforeach
                 </section>
