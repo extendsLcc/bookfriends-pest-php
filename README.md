@@ -10,7 +10,7 @@ This project was developed following [Alex Garrett-Smith](https://twitter.com/al
 
 # :pushpin: Table of Contents
 
-* [Requirements](#:computer:-requirements)
+* [Requirements](# :computer:-requirements)
 * [Installation](#🔧-installaling-bookfriends)
 * [Running](#:rocket:-running-bookfriends)
 * [Tests](#:test_tube:-running-tests)
