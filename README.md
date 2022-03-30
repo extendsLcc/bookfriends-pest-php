@@ -15,13 +15,13 @@ This project was developed following [Alex Garrett-Smith](https://twitter.com/al
 * [Running](#rocket-running-bookfriends)
 * [Tests](#test_tube-running-tests)
 
-## 💻 Requirements
+## :computer: Requirements
 
 
 * Docker
 * Docker-compose
 
-## 🔧 Installaling Bookfriends
+## :wrench: Installaling Bookfriends
 
 To install Bookfriends, run the following command on project root directory
 ```
