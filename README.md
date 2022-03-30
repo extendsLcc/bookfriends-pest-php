@@ -71,7 +71,7 @@ With the container running you can
 ```
 ./vendor/bin/sail artisan test
 ```
-or
+or access the container with `sail bash`, then run
 ```
 ./vendor/bin/pest
 ```
