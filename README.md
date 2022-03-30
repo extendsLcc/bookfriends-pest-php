@@ -46,7 +46,7 @@ Run Migrations | with container running, execute
 ```
 Install package.json dependencies | with container running, execute
 ```
-sail yarn install
+./vendor/bin/sail yarn install
 ```
 ## :rocket: Running Bookfriends
 
@@ -69,17 +69,11 @@ Then you can access the application at localhost:80 by default
 
 With the container running you can
 ```
-./vendor/bin/sail up -d
+./vendor/bin/sail artisan test
 ```
-or, if laravel sail is aliased
+or
 ```
-sail up -d
+./vendor/bin/pest
 ```
-Serve assets development
-```
-sail yarn hot
-```
-<br>
-Then you can access the application at localhost:80 by default
 
 [⬆ back to top](#bookfriends)<br>
